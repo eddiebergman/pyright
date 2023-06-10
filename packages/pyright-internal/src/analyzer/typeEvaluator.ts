@@ -186,7 +186,7 @@ import {
     TypeResultWithNode,
     ValidateArgTypeParams,
     ValidateTypeArgsOptions,
-    maxSubtypesForInferredType
+    maxSubtypesForInferredType,
 } from './typeEvaluatorTypes';
 import * as TypePrinter from './typePrinter';
 import {
