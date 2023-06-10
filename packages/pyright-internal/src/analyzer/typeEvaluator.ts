@@ -178,6 +178,7 @@ import {
     FunctionTypeResult,
     MemberAccessDeprecationInfo,
     MatchArgsToParamsResult,
+    MatchCallArgsToParams,
     PrintTypeOptions,
     ResolveAliasOptions,
     TypeEvaluator,
@@ -2184,7 +2185,7 @@ export function createTypeEvaluator(importLookup: ImportLookup, evaluatorOptions
         return undefined;
     }
 
-    function matchCallArgsToParams(callNode: CallNode): MatchArgsToParamsResult[] | undefined {
+    function matchCallArgsToParams(callNode: CallNode): MatchCallArgsToParams[] | undefined {
         const exprNode = callNode.leftExpression;
         const callType = getType(exprNode);
         if (callType === undefined) {
@@ -2201,12 +2202,15 @@ export function createTypeEvaluator(importLookup: ImportLookup, evaluatorOptions
             });
         });
 
-        const calls: MatchArgsToParamsResult[] = [];
+        const calls: MatchCallArgsToParams[] = [];
 
         function addOneFunctionToSignature(type: FunctionType) {
             useSpeculativeMode(callNode!, () => {
-                const callResult = matchFunctionArgumentsToParameters(exprNode, argList, { type }, 0);
-                calls.push(callResult);
+                const match = matchFunctionArgumentsToParameters(exprNode, argList, { type }, 0);
+                calls.push({
+                    match: match,
+                    type: type,
+                });
             });
         }
 
