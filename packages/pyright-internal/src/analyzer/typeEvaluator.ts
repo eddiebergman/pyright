@@ -2275,7 +2275,7 @@ export function createTypeEvaluator(importLookup: ImportLookup, evaluatorOptions
                             evaluatorInterface,
                             callNode,
                             ClassType.cloneAsInstance(subtype),
-                            /* skipObjectBase */ false
+                            MemberAccessFlags.SkipObjectBaseClass,
                         );
 
                         if (initMethodResult && !initMethodResult.typeErrors) {
@@ -2301,7 +2301,7 @@ export function createTypeEvaluator(importLookup: ImportLookup, evaluatorOptions
                                 evaluatorInterface,
                                 callNode,
                                 subtype,
-                                /* skipObjectBase */ false
+                                MemberAccessFlags.SkipObjectBaseClass,
                             );
 
                             if (newMethodResult && !newMethodResult.typeErrors && isFunction(newMethodResult.type)) {
