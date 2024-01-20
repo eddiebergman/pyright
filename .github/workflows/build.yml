@@ -1,7 +1,7 @@
 name: 'Build'
 
 env:
-  NODE_VERSION: '16' # Shipped with VS Code.
+  NODE_VERSION: '16'
   ARTIFACT_NAME_VSIX: vsix
   VSIX_NAME: vscode-pyright.vsix
 
@@ -9,6 +9,8 @@ on:
   push:
     tags:
       - '1.1.[0-9][0-9][0-9]'
+  workflow_dispatch:
+
 
 jobs:
   build:
