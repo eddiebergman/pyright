@@ -443,6 +443,33 @@ export interface ValidateTypeArgsOptions {
     allowUnpackedTuples?: boolean;
 }
 
+export interface MatchArgsToParamsResult {
+    overload: FunctionType;
+    overloadIndex: number;
+
+    argumentErrors: boolean;
+    isTypeIncomplete: boolean;
+    argParams: ValidateArgTypeParams[];
+    activeParam?: FunctionParameter | undefined;
+    paramSpecTarget?: TypeVarType | undefined;
+    paramSpecArgList?: FunctionArgument[] | undefined;
+
+    // A higher relevance means that it should be considered
+    // first, before lower relevance overloads.
+    relevance: number;
+
+    // A score that indicates how well the overload matches with
+    // supplied arguments. Used to pick the "best" for purposes
+    // of error reporting when no matches are found. The higher
+    // the score, the worse the match.
+    argumentMatchScore: number;
+}
+
+export interface MatchCallArgsToParams {
+    match: MatchArgsToParamsResult;
+    type: FunctionType;
+}
+
 export interface TypeEvaluator {
     runWithCancellationToken<T>(token: CancellationToken, callback: () => T): T;
 
@@ -575,6 +602,8 @@ export interface TypeEvaluator {
     ) => FunctionType | OverloadedFunctionType | undefined;
     getCallSignatureInfo: (node: CallNode, activeIndex: number, activeOrFake: boolean) => CallSignatureInfo | undefined;
     getAbstractSymbols: (classType: ClassType) => AbstractSymbol[];
+    matchCallArgsToParams: (callNode: CallNode) => MatchCallArgsToParams[] | undefined;
+    getAbstractMethods: (classType: ClassType) => AbstractMethod[];
     narrowConstrainedTypeVar: (node: ParseNode, typeVar: TypeVarType) => Type | undefined;
 
     assignType: (
