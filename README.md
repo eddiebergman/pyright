@@ -1,6 +1,12 @@
 # Support for inlay hints
 
-This fork extends Pyright with inlay hints support. Initial implementation of the inlay hint provider was adapted from ![coc-pyright](https://github.com/fannheyward/coc-pyright).
+This fork extends another fork of Pyright which added inlay hints support. https://github.com/jbradaric/pyright-inlay-hints/
+This version was simply to update to the latest version of main and have access to the build functionality through
+github action workers.
+
+If this is of any issue to anyone, please contact me and I will remove this repo.
+
+Initial implementation of the inlay hint provider was adapted from ![coc-pyright](https://github.com/fannheyward/coc-pyright).
 
 Pyright is a full-featured, standards-based static type checker for Python. It is designed for high performance and can be used with large Python source bases.
 
