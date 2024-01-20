@@ -603,7 +603,6 @@ export interface TypeEvaluator {
     getCallSignatureInfo: (node: CallNode, activeIndex: number, activeOrFake: boolean) => CallSignatureInfo | undefined;
     getAbstractSymbols: (classType: ClassType) => AbstractSymbol[];
     matchCallArgsToParams: (callNode: CallNode) => MatchCallArgsToParams[] | undefined;
-    getAbstractMethods: (classType: ClassType) => AbstractMethod[];
     narrowConstrainedTypeVar: (node: ParseNode, typeVar: TypeVarType) => Type | undefined;
 
     assignType: (

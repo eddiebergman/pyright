@@ -26563,7 +26563,6 @@ export function createTypeEvaluator(importLookup: ImportLookup, evaluatorOptions
         getCallSignatureInfo,
         getAbstractSymbols,
         matchCallArgsToParams,
-        getAbstractMethods,
         narrowConstrainedTypeVar,
         assignType,
         validateOverrideMethod,
